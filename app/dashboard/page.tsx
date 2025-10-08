@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Phone, AlertTriangle, FileText, Radio } from "lucide-react"
+import { Phone, AlertTriangle, FileText, Radio, MapPin } from "lucide-react"
 import Link from "next/link"
 
 export default async function DashboardPage() {
@@ -24,7 +24,7 @@ export default async function DashboardPage() {
           <p className="text-muted-foreground">Welcome back, {user.email}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           <Card className="border-red-200 hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -109,6 +109,30 @@ export default async function DashboardPage() {
                 className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 bg-transparent"
               >
                 <Link href="/dashboard/dispatch">View Dispatches</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* New card for Nearest Camps */}
+          <Card className="border-green-200 hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-green-100 rounded-lg">
+                  <MapPin className="h-6 w-6 text-green-700" />
+                </div>
+                <div>
+                  <CardTitle>Nearest Camps</CardTitle>
+                  <CardDescription>Find rescue camps on map</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <Button
+                asChild
+                variant="outline"
+                className="w-full border-green-700 text-green-700 hover:bg-green-50 bg-transparent"
+              >
+                <Link href="/dashboard/camps">Open Map</Link>
               </Button>
             </CardContent>
           </Card>
