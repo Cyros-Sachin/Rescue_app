@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Phone, AlertTriangle, FileText, Radio, MapPin } from "lucide-react"
+import { Phone, AlertTriangle, FileText, Radio, MapPin, Map } from "lucide-react"
 import Link from "next/link"
 
 export default async function DashboardPage() {
@@ -17,42 +17,42 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-red-600 mb-2">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, {user.email}</p>
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 pb-8">
+      <div className="w-full px-4 py-6 sm:py-8">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl font-bold text-red-600 mb-2">Dashboard</h1>
+          <p className="text-xs sm:text-base text-muted-foreground">Welcome back, {user.email}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <Card className="border-red-200 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-red-100 rounded-lg">
-                  <AlertTriangle className="h-6 w-6 text-red-600" />
+            <CardHeader className="pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-red-100 rounded-lg flex-shrink-0">
+                  <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
                 </div>
-                <div>
-                  <CardTitle>Report Emergency</CardTitle>
-                  <CardDescription>Upload disaster photos</CardDescription>
+                <div className="min-w-0">
+                  <CardTitle className="text-sm sm:text-base">Report Emergency</CardTitle>
+                  <CardDescription className="text-xs">Upload disaster photos</CardDescription>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <Button asChild className="w-full bg-red-600 hover:bg-red-700">
+              <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-xs sm:text-sm h-8 sm:h-9">
                 <Link href="/dashboard/report">Report Now</Link>
               </Button>
             </CardContent>
           </Card>
 
           <Card className="border-orange-200 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-orange-100 rounded-lg">
-                  <Phone className="h-6 w-6 text-orange-600" />
+            <CardHeader className="pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-orange-100 rounded-lg flex-shrink-0">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-orange-600" />
                 </div>
-                <div>
-                  <CardTitle>Emergency Contacts</CardTitle>
-                  <CardDescription>View rescue team numbers</CardDescription>
+                <div className="min-w-0">
+                  <CardTitle className="text-sm sm:text-base">Emergency Contacts</CardTitle>
+                  <CardDescription className="text-xs">View rescue team numbers</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -60,7 +60,7 @@ export default async function DashboardPage() {
               <Button
                 asChild
                 variant="outline"
-                className="w-full border-orange-600 text-orange-600 hover:bg-orange-50 bg-transparent"
+                className="w-full border-orange-600 text-orange-600 hover:bg-orange-50 bg-transparent text-xs sm:text-sm h-8 sm:h-9"
               >
                 <Link href="/dashboard/contacts">View Contacts</Link>
               </Button>
@@ -68,14 +68,14 @@ export default async function DashboardPage() {
           </Card>
 
           <Card className="border-yellow-200 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-yellow-100 rounded-lg">
-                  <FileText className="h-6 w-6 text-yellow-600" />
+            <CardHeader className="pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-yellow-100 rounded-lg flex-shrink-0">
+                  <FileText className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-600" />
                 </div>
-                <div>
-                  <CardTitle>My Reports</CardTitle>
-                  <CardDescription>View your submissions</CardDescription>
+                <div className="min-w-0">
+                  <CardTitle className="text-sm sm:text-base">My Reports</CardTitle>
+                  <CardDescription className="text-xs">View your submissions</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
               <Button
                 asChild
                 variant="outline"
-                className="w-full border-yellow-600 text-yellow-600 hover:bg-yellow-50 bg-transparent"
+                className="w-full border-yellow-600 text-yellow-600 hover:bg-yellow-50 bg-transparent text-xs sm:text-sm h-8 sm:h-9"
               >
                 <Link href="/dashboard/reports">View Reports</Link>
               </Button>
@@ -91,14 +91,14 @@ export default async function DashboardPage() {
           </Card>
 
           <Card className="border-purple-200 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-purple-100 rounded-lg">
-                  <Radio className="h-6 w-6 text-purple-600" />
+            <CardHeader className="pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-purple-100 rounded-lg flex-shrink-0">
+                  <Radio className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
                 </div>
-                <div>
-                  <CardTitle>Dispatch Center</CardTitle>
-                  <CardDescription>Active rescue operations</CardDescription>
+                <div className="min-w-0">
+                  <CardTitle className="text-sm sm:text-base">Dispatch Center</CardTitle>
+                  <CardDescription className="text-xs">Active rescue operations</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -106,23 +106,22 @@ export default async function DashboardPage() {
               <Button
                 asChild
                 variant="outline"
-                className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 bg-transparent"
+                className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 bg-transparent text-xs sm:text-sm h-8 sm:h-9"
               >
                 <Link href="/dashboard/dispatch">View Dispatches</Link>
               </Button>
             </CardContent>
           </Card>
 
-          {/* New card for Nearest Camps */}
           <Card className="border-green-200 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-green-100 rounded-lg">
-                  <MapPin className="h-6 w-6 text-green-700" />
+            <CardHeader className="pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-green-100 rounded-lg flex-shrink-0">
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-green-700" />
                 </div>
-                <div>
-                  <CardTitle>Nearest Camps</CardTitle>
-                  <CardDescription>Find rescue camps on map</CardDescription>
+                <div className="min-w-0">
+                  <CardTitle className="text-sm sm:text-base">Nearest Camps</CardTitle>
+                  <CardDescription className="text-xs">Find rescue camps on map</CardDescription>
                 </div>
               </div>
             </CardHeader>
@@ -130,9 +129,28 @@ export default async function DashboardPage() {
               <Button
                 asChild
                 variant="outline"
-                className="w-full border-green-700 text-green-700 hover:bg-green-50 bg-transparent"
+                className="w-full border-green-700 text-green-700 hover:bg-green-50 bg-transparent text-xs sm:text-sm h-8 sm:h-9"
               >
                 <Link href="/dashboard/camps">Open Map</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="border-blue-200 hover:shadow-lg transition-shadow">
+            <CardHeader className="pb-3 sm:pb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-2 sm:p-3 bg-blue-100 rounded-lg flex-shrink-0">
+                  <Map className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                </div>
+                <div className="min-w-0">
+                  <CardTitle className="text-sm sm:text-base">Live Disaster Map</CardTitle>
+                  <CardDescription className="text-xs">Real-time disasters & teams</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm h-8 sm:h-9">
+                <Link href="/dashboard/live-map">View Map</Link>
               </Button>
             </CardContent>
           </Card>
