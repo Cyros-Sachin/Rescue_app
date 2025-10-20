@@ -106,7 +106,7 @@ export default function ReportPage() {
         throw new Error("Failed to analyze image")
       }
 
-      const { analysis, assignedTeams, disasterType, severity } = await analysisResponse.json()
+      const { analysis, assignedTeam, disasterType, severity } = await analysisResponse.json()
 
       const { error: dbError } = await supabase.from("disaster_reports").insert({
         user_id: user.id,
@@ -115,7 +115,7 @@ export default function ReportPage() {
         location_lng: finalLng,
         location_address: locationAddress || null,
         ai_analysis: analysis,
-        assigned_team: assignedTeams?.join(", ") || "Unassigned",
+        assigned_team: assignedTeam,
         status: "assigned",
       })
 
