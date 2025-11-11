@@ -1,23 +1,53 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
+import { useState, useEffect } from "react"
+import { createClient } from "@/lib/supabase/client"
 import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Phone, AlertTriangle, FileText, Radio, MapPin, Map } from "lucide-react"
+import { Phone, AlertTriangle, FileText, Radio, MapPin, Map, AlertCircle } from "lucide-react"
 import Link from "next/link"
+import { SOSButtonModal } from "@/components/sos-button-modal"
 
-export default async function DashboardPage() {
-  const supabase = await createClient()
+export default function DashboardPage() {
+  const [user, setUser] = useState<any>(null)
+  const [isSOSOpen, setIsSOSOpen] = useState(false)
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  useEffect(() => {
+    const checkUser = async () => {
+      const supabase = createClient()
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+
+      if (!user) {
+        redirect("/auth/login")
+      }
+      setUser(user)
+    }
+
+    checkUser()
+  }, [])
 
   if (!user) {
-    redirect("/auth/login")
+    return null
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 pb-8">
+      <div className="w-full px-4 py-4 sm:py-6 bg-red-600 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <h2 className="text-white font-semibold text-xs sm:text-sm">Emergency? Need Help Immediately?</h2>
+          <Button
+            onClick={() => setIsSOSOpen(true)}
+            className="bg-white text-red-600 hover:bg-red-50 font-bold animate-pulse text-xs sm:text-sm h-8 sm:h-10 px-3 sm:px-4"
+          >
+            <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+            SOS
+          </Button>
+        </div>
+      </div>
+
       <div className="w-full px-4 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-4xl font-bold text-red-600 mb-2">Dashboard</h1>
@@ -156,6 +186,8 @@ export default async function DashboardPage() {
           </Card>
         </div>
       </div>
+
+      <SOSButtonModal isOpen={isSOSOpen} onClose={() => setIsSOSOpen(false)} />
     </div>
   )
 }
