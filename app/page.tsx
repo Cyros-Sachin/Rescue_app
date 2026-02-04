@@ -82,7 +82,7 @@ export default function HomePage() {
             <CardContent className="pt-8 pb-8">
               <h2 className="text-3xl font-bold text-white mb-4">Every Second Counts in an Emergency</h2>
               <p className="text-red-100 mb-6 text-lg leading-relaxed">
-                Join RescueAlert today and help save lives with faster, smarter disaster response
+                Join RescueAlert today and help save lives with faster, smarter disaster response.
               </p>
               <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6">
                 <Link href="/auth/signup">Create Free Account</Link>
